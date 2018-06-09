@@ -1,8 +1,10 @@
 class Url < ActiveRecord::Base
-  LENGTH = 5
+
+  has_many :url_stats
   validate :shorten, :valid_url?
   validates :original,uniqueness: true, presence: true
-  validates :short, presence: true
+  validates :short, presence: true,uniqueness: true
+  LENGTH = 5
 
   def generate_url
     source=("a".."z").to_a + ("A".."Z").to_a + (0..9).to_a + ["_","-","."]
@@ -15,6 +17,13 @@ class Url < ActiveRecord::Base
     self.short =  self.generate_url if self.short.nil?
   end
 
+  def update_visit
+    self.visited += 1
+    self.save
+    date = Date.current
+    stat = UrlStats.find_or_initialize_by(url_id: self.id, date: date)
+    stat.update_histogram
+  end
 
   def valid_url?
     url = self.original

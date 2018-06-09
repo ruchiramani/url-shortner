@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/:short' => 'urls#redirect'
 
+  get 'stats/:id' => 'urls#get_stats'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
