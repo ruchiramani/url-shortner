@@ -6,11 +6,11 @@ Rails.application.routes.draw do
   root 'urls#index'
 
   resources :urls
+  get 'stats/domain/:domain' => 'urls#domain_stats'
 
   get '/:short' => 'urls#redirect'
 
   get 'stats/:id' => 'urls#get_stats'
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

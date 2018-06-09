@@ -22,6 +22,7 @@ class Url < ActiveRecord::Base
     self.save
     date = Date.current
     stat = UrlStats.find_or_initialize_by(url_id: self.id, date: date)
+    stat.save
     stat.update_histogram
   end
 
@@ -29,7 +30,7 @@ class Url < ActiveRecord::Base
     url = self.original
     uri = URI.parse(url)
     uri.is_a?(URI::HTTP) && !uri.host.nil?
-    self.domain = uri.host
+    self.domain = uri.host.start_with?('www.') ? uri.host[4..-5] : uri.host
    rescue URI::InvalidURIError
     false
   end
