@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20180609151932) do
     t.string   "original"
     t.string   "short"
     t.string   "domain"
-    t.integer  "visited"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "visited",    default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
