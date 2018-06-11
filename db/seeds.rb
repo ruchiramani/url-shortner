@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+case Rails.env
+when 'development'
+   urls = ['https://www.google.com', 'https://www.apple.com', 'https://www.mobilizeamerica.io/']
+   urls.each do |i|
+     new = Url.create(original: i)
+     new.save
+  end
+end

@@ -14,7 +14,6 @@ class Url < ActiveRecord::Base
   end
 
   def shorten
-    binding.pry
     self.short =  self.generate_url if self.short.nil?
   end
 
