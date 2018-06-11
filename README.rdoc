@@ -25,7 +25,7 @@ If you already have Ruby 2.2.2 and Rails 4.2.5 installed, skip this step and go 
         - rake db:create
         - rake db:migrate
 
-  4)   Run the app locally
+4)   Run the app locally
 
      - Type the following command in your terminal
 
