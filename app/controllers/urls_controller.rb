@@ -8,7 +8,7 @@ class UrlsController < ApplicationController
   def create
     @url = Url.find_or_initialize_by(original: params[:original])
     # if a custom url is requested but a shortened one for the original already exists, it will return the old one.
-    @url.short = params[:short] if params[:short] && !self.short
+    @url.short = params[:short] if params[:short] && !@url.short
     if @url.save
       render :json => {:result => @url, :status => 201}
     else
